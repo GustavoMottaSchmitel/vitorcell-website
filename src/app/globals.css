@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@keyframes pulse-slow-reverse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+.animate-pulse-slow-reverse {
+  animation: pulse-slow-reverse 10s infinite alternate;
+}
