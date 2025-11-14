@@ -1,84 +1,107 @@
-import { Product, BatteryColorConfig, BrandGradientConfig } from '@/app/types/product';
-import { Camera, Cpu, Battery, Zap, Sparkles } from 'lucide-react';
+import { Product, BatteryColorConfig, BrandGradientConfig, FilterOption, ProductFilter } from '@/app/types/product';
+import { Camera, Cpu, Battery, Zap, Sparkles, Smartphone, Shield } from 'lucide-react';
 
 export const products: Product[] = [
   {
     id: 1,
     name: "iPhone 17 Pro",
     brand: "Apple",
-    price: "R$ 8.999",
-    storage: "256GB",
-    color: "Titânio Natural",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
     condition: "Novo",
     batteryHealth: "100%",
-    image: "/iphone-17-pro-nobg.png",
-    description: "Poder, inteligência e design. Tudo em um só lugar.",
+    image: "/iphone-17-pro-2.png",
+    description: "O equilíbrio perfeito entre potência, inteligência e um design que impressiona.",
     features: [
-      { icon: Camera, text: "Câmera Fusion Pro de 48 MP", description: "Capture cada detalhe com clareza impressionante" },
-      { icon: Cpu, text: "Chip A19 Pro", description: "O processador mais rápido do mercado, sem travamentos" },
-      { icon: Battery, text: "Bateria 4422mAh", description: "Bateria que dura o dia inteiro" },
-      { icon: Zap, text: "Dynamic Island", description: "Um hub dinâmico de informações, alertas e atividades em tempo real, integrado à interface." }
+      { icon: Camera, text: "Câmera Fusion Pro 48MP", description: "Fotografia de nível profissional mesmo em baixa luz" },
+      { icon: Cpu, text: "Chip A19 Pro", description: "Velocidade absurda para jogos, apps e multitarefas" },
+      { icon: Battery, text: "Bateria 4422mAh", description: "Use o dia inteiro sem preocupação" },
+      { icon: Zap, text: "Dynamic Island Evoluída", description: "Informações inteligentes sempre ao alcance dos olhos" }
     ],
-    whatsappMessage: "Olá! Gostaria de comprar o iPhone 17 Pro 256GB Titânio Natural"
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 17 Pro - NOVO"
   },
+
   {
     id: 2,
-    name: "iPhone 14 Pro",
+    name: "iPhone 17",
     brand: "Apple",
-    price: "R$ 4.299",
-    storage: "128GB",
-    color: "Roxo Profundo",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
     condition: "Seminovo",
-    batteryHealth: "92%",
-    image: "/iphone-17promax.png",
-    description: "Estado conservado com mínimo de uso. Funcionalidade 100% original.",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-17-sage.png",
+    description: "Performance, elegância e a nova geração de câmeras em um só dispositivo.",
     features: [
-      { icon: Camera, text: "Câmera 48MP", description: "Tripla lente" },
-      { icon: Cpu, text: "Chip A16 Bionic", description: "Performance elite" },
-      { icon: Battery, text: "Bateria 3200mAh", description: "92% saúde" },
-      { icon: Sparkles, text: "Dynamic Island", description: "Inovação Apple" }
+      { icon: Camera, text: "Câmera Fusion Pro 48MP", description: "Fotos e vídeos com nitidez impressionante" },
+      { icon: Cpu, text: "Chip A19", description: "Performance rápida e eficiente para o dia a dia" },
+      { icon: Battery, text: "Bateria 4380mAh", description: "Autonomia de sobra para acompanhar sua rotina" },
+      { icon: Zap, text: "Dynamic Island", description: "A central de informações inteligente da Apple" }
     ],
-    whatsappMessage: "Olá! Gostaria de comprar o iPhone 14 Pro 128GB Roxo Profundo"
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 17 - NOVO"
   },
+
   {
     id: 3,
-    name: "Xiaomi 13T Pro",
-    brand: "Xiaomi",
-    price: "R$ 2.799",
-    storage: "512GB",
-    color: "Preto",
+    name: "iPhone 17 Pro Max",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
     condition: "Novo",
     batteryHealth: "100%",
-    image: "/xiaomi-13t-pro.jpg",
-    description: "Novo na caixa com garantia completa e todos os acessórios originais.",
+    image: "/iphone-17-pro-max.png",
+    description: "Tela gigante, bateria impressionante e a melhor câmera já vista em um iPhone.",
     features: [
-      { icon: Camera, text: "Câmera 50MP", description: "Leica Optics" },
-      { icon: Cpu, text: "Dimensity 9200+", description: "Performance top" },
-      { icon: Battery, text: "Bateria 5000mAh", description: "100% saúde" },
-      { icon: Zap, text: "120W HyperCharge", description: "Carregamento ultra" }
+      { icon: Camera, text: "Câmera Fusion Pro Max 48MP", description: "Zoom poderoso e detalhes absurdos" },
+      { icon: Cpu, text: "Chip A19 Pro Max", description: "O processador mais rápido já colocado em um iPhone" },
+      { icon: Battery, text: "Bateria 4850mAh", description: "Mais de um dia de uso com tranquilidade" },
+      { icon: Zap, text: "Dynamic Island Pro", description: "A experiência mais completa de interação inteligente" }
     ],
-    whatsappMessage: "Olá! Gostaria de comprar o Xiaomi 13T Pro 512GB Preto"
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 17 Pro Max - NOVO"
   },
+
   {
     id: 4,
-    name: "Xiaomi Redmi Note 12",
+    name: "Xiaomi 14 X7 Pro",
     brand: "Xiaomi",
-    price: "R$ 1.199",
-    storage: "128GB",
-    color: "Azul",
-    condition: "Seminovo",
-    batteryHealth: "88%",
-    image: "/xiaomi-13t-pro.jpg",
-    description: "Excelente custo-benefício em perfeito estado de funcionamento.",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Novo",
+    batteryHealth: "100%",
+    image: "/xiaomi-poco-x7-pro.png",
+    description: "Tecnologia de ponta, câmera Leica e desempenho extremo em um só aparelho.",
     features: [
-      { icon: Camera, text: "Câmera 50MP", description: "Tripla câmera" },
-      { icon: Cpu, text: "Snapdragon 685", description: "Performance sólida" },
-      { icon: Battery, text: "Bateria 5000mAh", description: "88% saúde" },
-      { icon: Sparkles, text: "Tela AMOLED", description: "Cores vivas" }
+      { icon: Camera, text: "Câmera Leica 50MP", description: "Fotos profissionais com assinatura Leica Authentic" },
+      { icon: Cpu, text: "Snapdragon 8 Gen 3", description: "Performance absurda para games e multitarefas" },
+      { icon: Battery, text: "Bateria 4880mAh", description: "Carregamento ultrarrápido para nunca ficar na mão" },
+      { icon: Sparkles, text: "Tela AMOLED 120Hz", description: "Cores vibrantes e fluidez extrema" }
     ],
-    whatsappMessage: "Olá! Gostaria de comprar o Xiaomi Redmi Note 12 128GB Azul"
+    whatsappMessage: "Olá! Gostaria de consultar sobre o Xiaomi 14 Pro - NOVO"
+  },
+  {
+    id: 5,
+    name: "Redmi Note 14 Pro",
+    brand: "Xiaomi",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Novo",
+    batteryHealth: "100%",
+    image: "/redmi-note-pro.png",
+    description: "O intermediário mais poderoso da categoria, com câmera, desempenho e bateria que surpreendem.",
+    features: [
+      { icon: Camera, text: "Câmera 200MP Ultra Clarity", description: "Fotos com detalhes absurdos e nitidez impressionante" },
+      { icon: Cpu, text: "Snapdragon 7s Gen 2", description: "Desempenho rápido e eficiente para jogos e multitarefas" },
+      { icon: Battery, text: "Bateria 5100mAh", description: "Autonomia de longa duração com carregamento turbo" },
+      { icon: Sparkles, text: "Tela AMOLED 120Hz", description: "Visual fluido com cores vibrantes e pretos profundos" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o Redmi Note 14 Pro - NOVO"
   }
 ];
+
 
 export const phoneNumber = "5527996144142";
 
@@ -93,8 +116,48 @@ export const BRAND_GRADIENTS: BrandGradientConfig = {
   xiaomi: 'from-orange-500 to-amber-400'
 } as const;
 
-export const getFilterOptions = (products: Product[]) => [
-  { key: 'all' as const, label: 'Todos', count: products.length },
-  { key: 'apple' as const, label: 'iPhone', count: products.filter(p => p.brand === 'Apple').length },
-  { key: 'xiaomi' as const, label: 'Xiaomi', count: products.filter(p => p.brand === 'Xiaomi').length }
-];
+export const getFilterOptions = (products: Product[], currentFilter: ProductFilter) => {
+  const conditionOptions: FilterOption[] = [
+    {
+      key: 'all',
+      label: 'Todos',
+      count: products.length,
+      type: 'condition'
+    },
+    {
+      key: 'new',
+      label: 'Novos',
+      count: products.filter(p => p.condition === 'Novo').length,
+      type: 'condition'
+    },
+    {
+      key: 'used',
+      label: 'Seminovos',
+      count: products.filter(p => p.condition === 'Seminovo').length,
+      type: 'condition'
+    }
+  ];
+
+  const brandOptions: FilterOption[] = [
+    {
+      key: 'all',
+      label: 'Todas Marcas',
+      count: products.length,
+      type: 'brand'
+    },
+    {
+      key: 'apple',
+      label: 'iPhone',
+      count: products.filter(p => p.brand === 'Apple').length,
+      type: 'brand'
+    },
+    {
+      key: 'xiaomi',
+      label: 'Xiaomi',
+      count: products.filter(p => p.brand === 'Xiaomi').length,
+      type: 'brand'
+    }
+  ];
+
+  return { conditionOptions, brandOptions };
+};

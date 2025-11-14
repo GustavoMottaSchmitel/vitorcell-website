@@ -13,43 +13,52 @@ const ProductImage = ({ product }: { product: any }) => (
     <div className="relative h-96 bg-gradient-to-b from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-cyan-500/20">
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
 
-      <div className="w-full h-full flex items-center justify-center">
+      {/* Imagem do Produto */}
+      <div className="w-full h-full flex items-center justify-center p-4"> {/* Reduzi o padding para dar mais espaço */}
         <motion.div
-          className="relative w-full h-full max-w-[580px] max-h-[680px] min-h-[580px]"
-          whileHover={{ scale: 1.01 }}
+          className="relative w-80 h-96"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
         >
           <Image
             src={product.image}
             alt={product.name}
             fill
             className="object-contain drop-shadow-2xl"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 70vw, 55vw"
+            sizes="(max-width: 1024px) 100vw, 50vw"
             priority
           />
         </motion.div>
       </div>
 
+
       <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
     </div>
 
-    {/* Badges Flutuantes */}
+    {/* Badges Flutuantes - Atualizado */}
     <div className="absolute -top-4 left-6 right-6 flex justify-between">
       <motion.span
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.4 }}
-        className={`px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r ${getBatteryColor(product.batteryHealth)} text-white shadow-lg`}
+        className={`px-4 py-2 rounded-xl font-bold text-sm ${product.condition === 'Novo'
+          ? 'bg-gradient-to-r from-green-500 to-emerald-400 text-white'
+          : 'bg-gradient-to-r from-amber-500 to-orange-400 text-white'
+          } shadow-lg`}
       >
-        🔋 {product.batteryHealth}
+        {product.condition === 'Novo' ? '🆕 NOVO' : '🔄 SEMINOVO'}
       </motion.span>
 
       <motion.span
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5 }}
-        className={`px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r ${getBrandGradient(product.brand)} text-white shadow-lg`}
+        className={`px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r ${product.brand === 'Apple'
+          ? 'from-blue-500 to-cyan-400'
+          : 'from-orange-500 to-amber-400'
+          } text-white shadow-lg`}
       >
-        {product.brand}
+        {product.brand === 'Apple' ? '📱 iPhone' : '⚡ Xiaomi'}
       </motion.span>
     </div>
   </div>
@@ -123,6 +132,11 @@ const ProductThumbnails = ({
             <div className="text-xs text-cyan-400 font-semibold">
               {product.storage} • {product.color}
             </div>
+            {product.condition === 'Seminovo' && (
+              <div className="text-xs text-amber-400">
+                🔋 {product.batteryHealth}
+              </div>
+            )}
             <div className="text-lg font-bold text-cyan-400">
               {product.price}
             </div>
@@ -146,10 +160,11 @@ export default function PremiumTechProductsSection() {
     nextSlide,
     prevSlide,
     goToSlide,
-    handleFilterChange
+    handleConditionChange,
+    handleBrandChange
   } = useProducts();
 
-  const filterOptions = getFilterOptions(products);
+  const filterOptions = getFilterOptions(products, filter);
 
   return (
     <section id="produtos" className="py-20 bg-gradient-to-br from-gray-900 via-gray-950 to-black min-h-screen">
@@ -196,20 +211,48 @@ export default function PremiumTechProductsSection() {
           </motion.p>
         </motion.div>
 
-        {/* Filtros Elegantes */}
+        {/* Filtros Elegantes - Condição */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="flex justify-center gap-3 mb-6"
+        >
+          {filterOptions.conditionOptions.map((filterItem) => (
+            <motion.button
+              key={filterItem.key}
+              onClick={() => handleConditionChange(filterItem.key as any)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-sm border ${filter.condition === filterItem.key
+                ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-2xl border-transparent'
+                : 'bg-gray-800/50 text-gray-300 border-gray-700 hover:bg-gray-700/50'
+                }`}
+            >
+              {filterItem.label}
+              <span className="ml-2 text-sm opacity-90">({filterItem.count})</span>
+            </motion.button>
+          ))}
+        </motion.div>
+
+        {/* Filtros Elegantes - Marca */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           className="flex justify-center gap-3 mb-16"
         >
-          {filterOptions.map((filterItem) => (
+          {filterOptions.brandOptions.map((filterItem) => (
             <motion.button
               key={filterItem.key}
-              onClick={() => handleFilterChange(filterItem.key)}
+              onClick={() => handleBrandChange(filterItem.key as any)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-sm border ${filter === filterItem.key
-                ? `bg-gradient-to-r ${getBrandGradient(filterItem.key === 'all' ? 'apple' : filterItem.key)} text-white shadow-2xl border-transparent`
+              className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-sm border ${filter.brand === filterItem.key
+                ? `bg-gradient-to-r ${filterItem.key === 'apple'
+                  ? 'from-blue-500 to-cyan-400'
+                  : filterItem.key === 'xiaomi'
+                    ? 'from-orange-500 to-amber-400'
+                    : 'from-cyan-600 to-blue-600'
+                } text-white shadow-2xl border-transparent`
                 : 'bg-gray-800/50 text-gray-300 border-gray-700 hover:bg-gray-700/50'
                 }`}
             >
@@ -265,6 +308,29 @@ export default function PremiumTechProductsSection() {
                 <p className="text-xl text-gray-300 leading-relaxed">
                   {currentProduct.description}
                 </p>
+
+                {/* Nova seção de informações para consulta */}
+                <div className="bg-gray-800/30 rounded-2xl p-4 border border-cyan-500/20">
+                  <h4 className="text-lg font-semibold text-cyan-400 mb-3">
+                    📱 Informações Disponíveis
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-400">💾 Armazenamento:</span>
+                      <span className="text-white">{currentProduct.storage}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-gray-400">🎨 Cor:</span>
+                      <span className="text-white">{currentProduct.color}</span>
+                    </div>
+                    {currentProduct.condition === 'Seminovo' && (
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-400">🔋 Bateria:</span>
+                        <span className="text-white">{currentProduct.batteryHealth}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
 
               {/* Features */}
@@ -284,7 +350,11 @@ export default function PremiumTechProductsSection() {
                   </span>
                   <span className="flex items-center gap-2">
                     <Shield size={18} className="text-green-400" />
-                    Garantia 6 meses
+                    Garantia de 1 ano pela Apple (Novos)
+                  </span>
+                  <span className="flex items-center gap-2">
+                    <Shield size={18} className="text-green-400" />
+                    Seminovos são 90 dias pela loja
                   </span>
                 </div>
 

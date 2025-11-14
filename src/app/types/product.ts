@@ -21,12 +21,20 @@ export interface Product {
   whatsappMessage: string;
 }
 
-export type ProductFilter = 'all' | 'apple' | 'xiaomi';
+// Filtros aninhados: condição + marca
+export type ProductCondition = 'all' | 'new' | 'used';
+export type ProductBrand = 'all' | 'apple' | 'xiaomi';
+
+export interface ProductFilter {
+  condition: ProductCondition;
+  brand: ProductBrand;
+}
 
 export interface FilterOption {
-  key: ProductFilter;
+  key: ProductCondition | ProductBrand;
   label: string;
   count: number;
+  type: 'condition' | 'brand';
 }
 
 export interface BatteryColorConfig {
