@@ -14,7 +14,7 @@ const contactInfo = [
     { 
         icon: Phone, 
         text: "Telefone e WhatsApp", 
-        detail: "+55 27 99976-5211"
+        detail: "+55 27 99614-4142"
     },
     { 
         icon: Clock, 
@@ -24,7 +24,7 @@ const contactInfo = [
     { 
         icon: Mail, 
         text: "E-mail para Contato", 
-        detail: "contato@vitorcell.com.br"
+        detail: "assistenciavitorcel@gmail.com"
     },
 ];
 

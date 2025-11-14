@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Menu, X, Smartphone, DollarSign, MapPin, Mail, Phone } from 'lucide-react';
+import { Menu, X, Smartphone, DollarSign, MapPin, Mail, Phone, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
 // Array de links para navegação
@@ -11,6 +11,7 @@ const navLinks = [
     { name: "Orçamento", href: "#orcamento", icon: DollarSign },
     { name: "Localização", href: "#localizacao", icon: MapPin },
     { name: "Contato", href: "#contato", icon: Mail },
+    { name: "Produtos", href: "#produtos", icon: ShoppingCart}
 ];
 
 const headerVariants: Variants = {

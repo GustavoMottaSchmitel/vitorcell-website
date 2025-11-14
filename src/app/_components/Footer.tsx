@@ -6,11 +6,11 @@ import React from 'react';
 import Image from 'next/image';
 
 // Dados de Contato REAIS da Vitor cell
-const PHONE_NUMBER = "+55 27 99976-5211";
-const WHATSAPP_LINK = `https://wa.me/5527999765211`;
+const PHONE_NUMBER = "+55 27 99614-4142";
+const WHATSAPP_LINK = `https://wa.me/5527996144142`;
 const ADDRESS = "R. Humberto de Campos, 307 - Parque Res. Laranjeiras, Serra - ES";
 const ADDRESS_LINK = "https://www.google.com/maps/search/?api=1&query=R.+Humberto+de+Campos,+307,+Serra+-+ES";
-const EMAIL = "assistenciavitorcell@gmail.com";
+const EMAIL = "assistenciavitorcel@gmail.com";
 
 const navLinks = [
     { name: "Início", href: "#" },
