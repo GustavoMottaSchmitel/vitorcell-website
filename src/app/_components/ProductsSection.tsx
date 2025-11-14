@@ -1,133 +1,157 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Smartphone, Battery, Camera, Cpu, Check, Zap, Shield, Sparkles } from 'lucide-react';
+import { Smartphone, Check, Zap, Shield, Sparkles } from 'lucide-react';
 import Image from 'next/image';
-import React, { useState } from 'react';
 
-// Dados dos produtos premium
-const products = [
-  {
-    id: 1,
-    name: "iPhone 15 Pro Max",
-    brand: "Apple",
-    price: "R$ 5.999",
-    storage: "256GB",
-    color: "Titânio Natural",
-    condition: "Seminovo",
-    batteryHealth: "96%",
-    image: "/iphone-17promax.png",
-    description: "Performance máxima em estado impecável. Todas as funcionalidades preservadas como novo.",
-    features: [
-      { icon: Camera, text: "Câmera 48MP Pro", description: "Sistema avançado" },
-      { icon: Cpu, text: "Chip A17 Pro", description: "Velocidade extrema" },
-      { icon: Battery, text: "Bateria 4422mAh", description: "96% saúde" },
-      { icon: Zap, text: "USB-C", description: "Carregamento rápido" }
-    ],
-    whatsappMessage: "Olá! Gostaria de comprar o iPhone 15 Pro Max 256GB Titânio Natural"
-  },
-  {
-    id: 2,
-    name: "iPhone 14 Pro",
-    brand: "Apple",
-    price: "R$ 4.299",
-    storage: "128GB",
-    color: "Roxo Profundo",
-    condition: "Seminovo",
-    batteryHealth: "92%",
-    image: "/iphone-17promax.png",
-    description: "Estado conservado com mínimo de uso. Funcionalidade 100% original.",
-    features: [
-      { icon: Camera, text: "Câmera 48MP", description: "Tripla lente" },
-      { icon: Cpu, text: "Chip A16 Bionic", description: "Performance elite" },
-      { icon: Battery, text: "Bateria 3200mAh", description: "92% saúde" },
-      { icon: Sparkles, text: "Dynamic Island", description: "Inovação Apple" }
-    ],
-    whatsappMessage: "Olá! Gostaria de comprar o iPhone 14 Pro 128GB Roxo Profundo"
-  },
-  {
-    id: 3,
-    name: "Xiaomi 13T Pro",
-    brand: "Xiaomi",
-    price: "R$ 2.799",
-    storage: "512GB",
-    color: "Preto",
-    condition: "Novo",
-    batteryHealth: "100%",
-    image: "/xiaomi-13t-pro.jpg",
-    description: "Novo na caixa com garantia completa e todos os acessórios originais.",
-    features: [
-      { icon: Camera, text: "Câmera 50MP", description: "Leica Optics" },
-      { icon: Cpu, text: "Dimensity 9200+", description: "Performance top" },
-      { icon: Battery, text: "Bateria 5000mAh", description: "100% saúde" },
-      { icon: Zap, text: "120W HyperCharge", description: "Carregamento ultra" }
-    ],
-    whatsappMessage: "Olá! Gostaria de comprar o Xiaomi 13T Pro 512GB Preto"
-  },
-  {
-    id: 4,
-    name: "Xiaomi Redmi Note 12",
-    brand: "Xiaomi",
-    price: "R$ 1.199",
-    storage: "128GB",
-    color: "Azul",
-    condition: "Seminovo",
-    batteryHealth: "88%",
-    image: "/xiaomi-13t-pro.jpg",
-    description: "Excelente custo-benefício em perfeito estado de funcionamento.",
-    features: [
-      { icon: Camera, text: "Câmera 50MP", description: "Tripla câmera" },
-      { icon: Cpu, text: "Snapdragon 685", description: "Performance sólida" },
-      { icon: Battery, text: "Bateria 5000mAh", description: "88% saúde" },
-      { icon: Sparkles, text: "Tela AMOLED", description: "Cores vivas" }
-    ],
-    whatsappMessage: "Olá! Gostaria de comprar o Xiaomi Redmi Note 12 128GB Azul"
-  }
-];
+import { products, phoneNumber, getFilterOptions } from '@/app/data/products';
+import { useProducts } from '@/app/hooks/useProducts';
+import { getBatteryColor, getBrandGradient, getConditionStyles, getWhatsAppUrl } from '@/app/utils/productHelpers';
 
-const phoneNumber = "5527996144142";
+const ProductImage = ({ product }: { product: any }) => (
+  <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
+    <div className="relative h-96 bg-gradient-to-b from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-cyan-500/20">
+      <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
+      
+      <div className="w-full h-full flex items-center justify-center p-4">
+        <motion.div
+          className="relative w-80 h-96"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-contain drop-shadow-2xl"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority
+          />
+        </motion.div>
+      </div>
+      
+      <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
+    </div>
 
+    {/* Badges Flutuantes */}
+    <div className="absolute -top-4 left-6 right-6 flex justify-between">
+      <motion.span
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.4 }}
+        className={`px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r ${getBatteryColor(product.batteryHealth)} text-white shadow-lg`}
+      >
+        🔋 {product.batteryHealth}
+      </motion.span>
+
+      <motion.span
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ delay: 0.5 }}
+        className={`px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r ${getBrandGradient(product.brand)} text-white shadow-lg`}
+      >
+        {product.brand}
+      </motion.span>
+    </div>
+  </div>
+);
+
+// Componente de Features
+const ProductFeatures = ({ features }: { features: any[] }) => (
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {features.map((feature, index) => {
+      const Icon = feature.icon;
+      return (
+        <motion.div
+          key={index}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 + index * 0.1 }}
+          whileHover={{ scale: 1.02, y: -2 }}
+          className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-2xl border border-gray-700/50 hover:border-cyan-500/30 transition-all duration-300 group"
+        >
+          <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+            <Icon size={20} className="text-white" />
+          </div>
+          <div>
+            <div className="font-semibold text-white text-lg">{feature.text}</div>
+            <div className="text-cyan-400/80 text-sm">{feature.description}</div>
+          </div>
+        </motion.div>
+      );
+    })}
+  </div>
+);
+
+// Componente de Miniaturas
+const ProductThumbnails = ({ 
+  products, 
+  currentIndex, 
+  onThumbnailClick 
+}: { 
+  products: any[];
+  currentIndex: number;
+  onThumbnailClick: (index: number) => void;
+}) => (
+  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+    {products.map((product, index) => (
+      <motion.button
+        key={product.id}
+        onClick={() => onThumbnailClick(index)}
+        whileHover={{ scale: 1.05, y: -5 }}
+        className={`relative rounded-2xl p-6 text-center transition-all duration-300 border-2 backdrop-blur-sm overflow-hidden group ${
+          index === currentIndex
+            ? 'border-cyan-400 bg-cyan-500/10 shadow-2xl shadow-cyan-400/25'
+            : 'border-gray-700 bg-gray-800/30 hover:border-cyan-500/50'
+        }`}
+      >
+        <div className={`absolute inset-0 bg-gradient-to-br ${getBrandGradient(product.brand)} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
+
+        <div className="relative z-10">
+          <div className="w-16 h-16 mx-auto mb-4">
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={64}
+              height={64}
+              className="object-contain w-full h-full group-hover:scale-110 transition-transform duration-300"
+            />
+          </div>
+
+          <div className="space-y-2">
+            <div className="text-sm font-bold text-white line-clamp-2 min-h-[2.5rem] flex items-center justify-center">
+              {product.name}
+            </div>
+            <div className="text-xs text-cyan-400 font-semibold">
+              {product.storage} • {product.color}
+            </div>
+            <div className="text-lg font-bold text-cyan-400">
+              {product.price}
+            </div>
+            <div className={`text-xs px-2 py-1 rounded-full ${getConditionStyles(product.condition)}`}>
+              {product.condition}
+            </div>
+          </div>
+        </div>
+      </motion.button>
+    ))}
+  </div>
+);
+
+// Componente Principal
 export default function PremiumTechProductsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [filter, setFilter] = useState<'all' | 'apple' | 'xiaomi'>('all');
+  const {
+    currentIndex,
+    currentProduct,
+    filteredProducts,
+    filter,
+    nextSlide,
+    prevSlide,
+    goToSlide,
+    handleFilterChange
+  } = useProducts();
 
-  const filteredProducts = products.filter(product => {
-    if (filter === 'all') return true;
-    if (filter === 'apple') return product.brand === 'Apple';
-    if (filter === 'xiaomi') return product.brand === 'Xiaomi';
-    return true;
-  });
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === filteredProducts.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? filteredProducts.length - 1 : prevIndex - 1
-    );
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  const currentProduct = filteredProducts[currentIndex];
-
-  const getBatteryColor = (health: string) => {
-    const percentage = parseInt(health);
-    if (percentage >= 90) return 'from-green-500 to-emerald-400';
-    if (percentage >= 80) return 'from-amber-500 to-orange-400';
-    return 'from-red-500 to-pink-400';
-  };
-
-  const getBrandGradient = (brand: string) => {
-    return brand === "Apple"
-      ? 'from-blue-500 to-cyan-400'
-      : 'from-orange-500 to-amber-400';
-  };
+  const filterOptions = getFilterOptions(products);
 
   return (
     <section id="produtos" className="py-20 bg-gradient-to-br from-gray-900 via-gray-950 to-black min-h-screen">
@@ -180,23 +204,17 @@ export default function PremiumTechProductsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           className="flex justify-center gap-3 mb-16"
         >
-          {[
-            { key: 'all' as const, label: 'Todos', count: products.length },
-            { key: 'apple' as const, label: 'iPhone', count: products.filter(p => p.brand === 'Apple').length },
-            { key: 'xiaomi' as const, label: 'Xiaomi', count: products.filter(p => p.brand === 'Xiaomi').length }
-          ].map((filterItem) => (
+          {filterOptions.map((filterItem) => (
             <motion.button
               key={filterItem.key}
-              onClick={() => {
-                setFilter(filterItem.key);
-                setCurrentIndex(0);
-              }}
+              onClick={() => handleFilterChange(filterItem.key)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-sm border ${filter === filterItem.key
-                ? `bg-gradient-to-r ${getBrandGradient(filterItem.key === 'all' ? 'apple' : filterItem.key)} text-white shadow-2xl border-transparent`
-                : 'bg-gray-800/50 text-gray-300 border-gray-700 hover:bg-gray-700/50'
-                }`}
+              className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-sm border ${
+                filter === filterItem.key
+                  ? `bg-gradient-to-r ${getBrandGradient(filterItem.key === 'all' ? 'apple' : filterItem.key)} text-white shadow-2xl border-transparent`
+                  : 'bg-gray-800/50 text-gray-300 border-gray-700 hover:bg-gray-700/50'
+              }`}
             >
               {filterItem.label}
               <span className="ml-2 text-sm opacity-90">({filterItem.count})</span>
@@ -204,7 +222,7 @@ export default function PremiumTechProductsSection() {
           ))}
         </motion.div>
 
-        {/* Produto Principal - Design Inovador */}
+        {/* Produto Principal */}
         <motion.div
           key={currentProduct.id}
           initial={{ opacity: 0, scale: 0.95 }}
@@ -213,62 +231,14 @@ export default function PremiumTechProductsSection() {
           className="relative mb-12"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-
-            {/* Lado Esquerdo - Imagem com Efeito Tech */}
+            {/* Lado Esquerdo - Imagem */}
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.2 }}
               className="relative"
             >
-              <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
-                {/* Container da Imagem com Efeito Glass */}
-                <div className="relative h-96 bg-gradient-to-b from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-cyan-500/20">
-                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
-
-                  {/* Imagem do Produto - TAMANHO MÁXIMO OTIMIZADO */}
-                  <div className="w-full h-full flex items-center justify-center p-4"> 
-                    <motion.div
-                      className="relative w-80 h-96"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Image
-                        src={currentProduct.image}
-                        alt={currentProduct.name}
-                        fill
-                        className="object-contain drop-shadow-2xl"
-                        sizes="(max-width: 1024px) 100vw, 50vw"
-                        priority
-                      />
-                    </motion.div>
-                  </div>
-
-                  {/* Efeito de Brilho */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
-                </div>
-
-                {/* Badges Flutuantes */}
-                <div className="absolute -top-4 left-6 right-6 flex justify-between">
-                  <motion.span
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.4 }}
-                    className={`px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r ${getBatteryColor(currentProduct.batteryHealth)} text-white shadow-lg`}
-                  >
-                    🔋 {currentProduct.batteryHealth}
-                  </motion.span>
-
-                  <motion.span
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    className={`px-4 py-2 rounded-xl font-bold text-sm bg-gradient-to-r ${getBrandGradient(currentProduct.brand)} text-white shadow-lg`}
-                  >
-                    {currentProduct.brand}
-                  </motion.span>
-                </div>
-              </div>
+              <ProductImage product={currentProduct} />
             </motion.div>
 
             {/* Lado Direito - Informações */}
@@ -284,10 +254,7 @@ export default function PremiumTechProductsSection() {
                   <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    className={`px-3 py-1 rounded-lg text-sm font-bold ${currentProduct.condition === "Novo"
-                      ? "bg-green-500/20 text-green-400 border border-green-500/30"
-                      : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
-                      }`}
+                    className={`px-3 py-1 rounded-lg text-sm font-bold ${getConditionStyles(currentProduct.condition)}`}
                   >
                     {currentProduct.condition}
                   </motion.span>
@@ -303,30 +270,8 @@ export default function PremiumTechProductsSection() {
                 </p>
               </div>
 
-              {/* Features em Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {currentProduct.features.map((feature, index) => {
-                  const Icon = feature.icon;
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 + index * 0.1 }}
-                      whileHover={{ scale: 1.02, y: -2 }}
-                      className="flex items-center gap-4 p-4 bg-gray-800/50 rounded-2xl border border-gray-700/50 hover:border-cyan-500/30 transition-all duration-300 group"
-                    >
-                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                        <Icon size={20} className="text-white" />
-                      </div>
-                      <div>
-                        <div className="font-semibold text-white text-lg">{feature.text}</div>
-                        <div className="text-cyan-400/80 text-sm">{feature.description}</div>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </div>
+              {/* Features */}
+              <ProductFeatures features={currentProduct.features} />
 
               {/* Preço e Ação */}
               <div className="space-y-6 pt-4">
@@ -347,7 +292,7 @@ export default function PremiumTechProductsSection() {
                 </div>
 
                 <motion.a
-                  href={`https://wa.me/${phoneNumber}?text=${encodeURIComponent(currentProduct.whatsappMessage)}`}
+                  href={getWhatsAppUrl(phoneNumber, currentProduct.whatsappMessage)}
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02, y: -2 }}
@@ -386,10 +331,11 @@ export default function PremiumTechProductsSection() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
-                    ? 'bg-cyan-400 scale-125 shadow-lg shadow-cyan-400/50'
-                    : 'bg-gray-600 hover:bg-gray-500'
-                    }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? 'bg-cyan-400 scale-125 shadow-lg shadow-cyan-400/50'
+                      : 'bg-gray-600 hover:bg-gray-500'
+                  }`}
                 />
               ))}
             </div>
@@ -404,56 +350,12 @@ export default function PremiumTechProductsSection() {
             </motion.button>
           </div>
 
-          {/* Grid de Miniaturas - CORRIGIDO */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {filteredProducts.map((product, index) => (
-              <motion.button
-                key={product.id}
-                onClick={() => goToSlide(index)}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className={`relative rounded-2xl p-6 text-center transition-all duration-300 border-2 backdrop-blur-sm overflow-hidden group ${index === currentIndex
-                  ? 'border-cyan-400 bg-cyan-500/10 shadow-2xl shadow-cyan-400/25'
-                  : 'border-gray-700 bg-gray-800/30 hover:border-cyan-500/50'
-                  }`}
-              >
-                {/* Efeito de fundo gradiente */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${getBrandGradient(product.brand)} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
-
-                <div className="relative z-10">
-                  <div className="w-16 h-16 mx-auto mb-4">
-                    <Image
-                      src={product.image}
-                      alt={product.name}
-                      width={64}
-                      height={64}
-                      className="object-contain w-full h-full group-hover:scale-110 transition-transform duration-300"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    {/* CORREÇÃO AQUI: Mostrar nome completo ou nome + modelo */}
-                    <div className="text-sm font-bold text-white line-clamp-2 min-h-[2.5rem] flex items-center justify-center">
-                      {product.name}
-                    </div>
-                    <div className="text-xs text-cyan-400 font-semibold">
-                      {product.storage} • {product.color}
-                    </div>
-                    <div className="text-lg font-bold text-cyan-400">
-                      {product.price}
-                    </div>
-
-                    {/* Badge de condição */}
-                    <div className={`text-xs px-2 py-1 rounded-full ${product.condition === "Novo"
-                      ? "bg-green-500/20 text-green-400"
-                      : "bg-amber-500/20 text-amber-400"
-                      }`}>
-                      {product.condition}
-                    </div>
-                  </div>
-                </div>
-              </motion.button>
-            ))}
-          </div>
+          {/* Grid de Miniaturas */}
+          <ProductThumbnails
+            products={filteredProducts}
+            currentIndex={currentIndex}
+            onThumbnailClick={goToSlide}
+          />
         </motion.div>
 
         {/* CTA Final Premium */}
@@ -471,7 +373,7 @@ export default function PremiumTechProductsSection() {
               Nossos especialistas estão prontos para te ajudar a escolher o smartphone perfeito para suas necessidades.
             </p>
             <motion.a
-              href={`https://wa.me/${phoneNumber}?text=Olá! Gostaria de consultar a disponibilidade de outros modelos premium`}
+              href={getWhatsAppUrl(phoneNumber, "Olá! Gostaria de consultar a disponibilidade de outros modelos premium")}
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}

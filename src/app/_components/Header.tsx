@@ -5,13 +5,12 @@ import Image from 'next/image';
 import { Menu, X, Smartphone, DollarSign, MapPin, Mail, Phone, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 
-// Array de links para navegação
 const navLinks = [
     { name: "Serviços", href: "#servicos", icon: Smartphone },
     { name: "Orçamento", href: "#orcamento", icon: DollarSign },
     { name: "Localização", href: "#orcamento", icon: MapPin },
     { name: "Contato", href: "#orcamento", icon: Mail },
-    { name: "Produtos", href: "#produtos", icon: ShoppingCart}
+    { name: "Produtos", href: "#produtos", icon: ShoppingCart }
 ];
 
 const headerVariants: Variants = {
@@ -30,8 +29,8 @@ const headerVariants: Variants = {
 
 const linkVariants: Variants = {
     initial: { y: -20, opacity: 0 },
-    animate: { 
-        y: 0, 
+    animate: {
+        y: 0,
         opacity: 1,
         transition: {
             duration: 0.4,
@@ -81,11 +80,10 @@ export default function RefinedHeader() {
 
     return (
         <motion.header
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-                isScrolled 
-                    ? 'bg-gray-950/95 backdrop-blur-lg border-b border-gray-800/30' 
+            className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled
+                    ? 'bg-gray-950/95 backdrop-blur-lg border-b border-gray-800/30'
                     : 'bg-transparent backdrop-blur-md'
-            }`}
+                }`}
             variants={headerVariants}
             initial='initial'
             animate='animate'
@@ -118,7 +116,7 @@ export default function RefinedHeader() {
                     </motion.a>
 
                     {/* Menu Desktop */}
-                    <motion.div 
+                    <motion.div
                         className="hidden lg:flex items-center space-x-8"
                         variants={{
                             animate: {
@@ -180,7 +178,7 @@ export default function RefinedHeader() {
                         exit="closed"
                         className="lg:hidden absolute top-20 left-0 w-full bg-gray-950/95 backdrop-blur-lg border-b border-gray-800/30"
                     >
-                        <motion.div 
+                        <motion.div
                             className="flex flex-col space-y-1 p-6"
                             variants={{
                                 open: {
@@ -207,7 +205,7 @@ export default function RefinedHeader() {
                                     </motion.a>
                                 );
                             })}
-                            
+
                             {/* Botão WhatsApp Mobile */}
                             <motion.a
                                 href="https://wa.me/5527996144142"

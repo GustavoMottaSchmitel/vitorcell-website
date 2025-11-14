@@ -2,10 +2,8 @@
 
 import { Phone, MapPin, Mail, Instagram, Facebook, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React from 'react';
 import Image from 'next/image';
 
-// Dados de Contato REAIS da Vitor cell
 const PHONE_NUMBER = "+55 27 99614-4142";
 const WHATSAPP_LINK = `https://wa.me/5527996144142`;
 const ADDRESS = "R. Humberto de Campos, 307 - Parque Res. Laranjeiras, Serra - ES";
@@ -21,7 +19,7 @@ const navLinks = [
 
 const socialLinks = [
     { icon: Instagram, href: "#", name: "Instagram" },
-    { icon: Facebook, href: "#", name: "Facebook" }, 
+    { icon: Facebook, href: "#", name: "Facebook" },
 ];
 
 const contactInfo = [
@@ -59,10 +57,10 @@ export default function RefinedFooter() {
     return (
         <footer className="bg-gradient-to-b from-gray-900 to-gray-950 border-t border-gray-800/50 pt-20 pb-8 text-white">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
-                
+
                 {/* Conteúdo Principal */}
                 <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 border-b border-gray-800/50 pb-12 mb-8">
-                    
+
                     {/* Coluna 1: Logo e Descrição */}
                     <div className="lg:col-span-2">
                         <motion.div
@@ -71,8 +69,8 @@ export default function RefinedFooter() {
                             transition={{ duration: 0.6 }}
                             className="space-y-4"
                         >
-                            <a 
-                                href="#" 
+                            <a
+                                href="#"
                                 className="flex items-center space-x-4 group"
                             >
                                 <div className="p-2 bg-cyan-500/10 border border-cyan-500/20 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
@@ -94,7 +92,7 @@ export default function RefinedFooter() {
                                 </div>
                             </a>
                             <p className="text-gray-400 max-w-md text-lg leading-relaxed">
-                                Assistência técnica especializada em smartphones e acessórios premium. 
+                                Assistência técnica especializada em smartphones e acessórios premium.
                                 Qualidade e confiança em cada reparo.
                             </p>
                         </motion.div>
@@ -112,7 +110,7 @@ export default function RefinedFooter() {
                         <ul className="space-y-3">
                             {navLinks.map((link, index) => (
                                 <li key={link.name}>
-                                    <motion.a 
+                                    <motion.a
                                         href={link.href}
                                         className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center group"
                                         whileHover={{ x: 4 }}
@@ -124,7 +122,7 @@ export default function RefinedFooter() {
                             ))}
                         </ul>
                     </motion.div>
-                    
+
                     {/* Coluna 3: Contato */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -139,7 +137,7 @@ export default function RefinedFooter() {
                                 const Icon = item.icon;
                                 return (
                                     <li key={index} className="group">
-                                        <a 
+                                        <a
                                             href={item.href}
                                             target={item.href !== "#" ? "_blank" : undefined}
                                             rel={item.href !== "#" ? "noopener noreferrer" : undefined}
@@ -161,7 +159,7 @@ export default function RefinedFooter() {
                 </div>
 
                 {/* Rodapé Inferior */}
-                <motion.div 
+                <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.6, delay: 0.3 }}
@@ -182,10 +180,10 @@ export default function RefinedFooter() {
                         {socialLinks.map((social, index) => {
                             const Icon = social.icon;
                             return (
-                                <motion.a 
+                                <motion.a
                                     key={social.name}
-                                    href={social.href} 
-                                    target="_blank" 
+                                    href={social.href}
+                                    target="_blank"
                                     rel="noopener noreferrer"
                                     className="p-2 bg-gray-800/50 border border-gray-700/50 rounded-lg text-gray-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300"
                                     whileHover={{ scale: 1.1, y: -2 }}

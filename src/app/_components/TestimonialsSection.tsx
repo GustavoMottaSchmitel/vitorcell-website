@@ -2,65 +2,13 @@
 
 import { Star, Quote, ArrowLeft, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import React, { useState, useEffect, useCallback } from 'react';
+import React from 'react';
 
-// Dados de depoimentos
-const testimonials = [
-  {
-    id: 1,
-    quote: "Fui muito bem atendida. O Vitor é super transparente, trocou a tela do meu Samsung S20 em menos de duas horas. Serviço nota 10!",
-    name: "Laura V.",
-    role: "Cliente Samsung S20",
-    rating: 5,
-    service: "Troca de Tela",
-    avatar: "👩‍💼"
-  },
-  {
-    id: 2,
-    quote: "Precisava de um laudo para garantia e eles foram rápidos e precisos. A loja é organizada e o serviço tem preço justo. Virei cliente!",
-    name: "Marcelo B.",
-    role: "Cliente Corporativo",
-    rating: 5,
-    service: "Diagnóstico Técnico",
-    avatar: "👨‍💼"
-  },
-  {
-    id: 3,
-    quote: "Meu iPhone 11 estava com problema na bateria, troquei aqui e a durabilidade voltou a ser como nova. O custo-benefício foi excelente.",
-    name: "Patrícia R.",
-    role: "Cliente iPhone",
-    rating: 5,
-    service: "Substituição de Bateria",
-    avatar: "👩‍🎓"
-  },
-  {
-    id: 4,
-    quote: "Achei o carregador Turbo Original que eu precisava. Acessórios de verdade! Profissionais e honestos. Recomendo de olhos fechados.",
-    name: "Sérgio M.",
-    role: "Cliente Acessórios",
-    rating: 5,
-    service: "Venda de Acessórios",
-    avatar: "👨‍🔧"
-  },
-  {
-    id: 5,
-    quote: "Atendimento impecável! Resolveram um problema complexo na placa do meu Poco F3 que outras assistências não conseguiram. Deixei um pouco mais de tempo, mas valeu a espera.",
-    name: "Fernanda L.",
-    role: "Cliente Técnico",
-    rating: 4,
-    service: "Reparo em Placa",
-    avatar: "👩‍🔬"
-  },
-  {
-    id: 6,
-    quote: "Serviço super rápido! Deixei o celular de manhã e peguei no final da tarde. Qualidade e agilidade, não tem igual em Serra.",
-    name: "Roberto C.",
-    role: "Cliente Regular",
-    rating: 5,
-    service: "Desoxidação e Limpeza",
-    avatar: "👨‍🏫"
-  }
-];
+// Importações organizadas
+import { Testimonial } from '@/app/types/testimonial';
+import { testimonials, SECTION_CONFIG } from '@/app/data/testimonialData';
+import { useTestimonials } from '@/app/hooks/useTestimonials';
+import { containerVariants, itemVariants, getCarouselAnimation, buttonVariants } from '@/app/utils/testimonialHelpers';
 
 // Componente de Estrelas
 const StarRating = ({ rating }: { rating: number }) => (
@@ -69,8 +17,8 @@ const StarRating = ({ rating }: { rating: number }) => (
       <Star
         key={i}
         size={16}
-        className={i < rating 
-          ? "text-amber-400 fill-amber-400" 
+        className={i < rating
+          ? "text-amber-400 fill-amber-400"
           : "text-gray-600"
         }
       />
@@ -78,8 +26,8 @@ const StarRating = ({ rating }: { rating: number }) => (
   </div>
 );
 
-// Componente do Card
-const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] }) => (
+// Componente do Card de Depoimento
+const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
   <div className="p-6 bg-gray-900/30 border border-gray-700/30 rounded-xl shadow-lg h-full flex flex-col backdrop-blur-sm hover:border-cyan-500/20 transition-all duration-300">
     {/* Cabeçalho do Card */}
     <div className="flex items-start justify-between mb-4">
@@ -112,63 +60,25 @@ const TestimonialCard = ({ testimonial }: { testimonial: typeof testimonials[0] 
   </div>
 );
 
+// Componente Principal
 export default function RefinedTestimonialsSection() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Configurações responsivas
-  const getVisibleCards = () => {
-    if (typeof window === 'undefined') return 3;
-    
-    if (window.innerWidth < 768) return 1;
-    if (window.innerWidth < 1024) return 2;
-    return 3;
-  };
-
-  const [visibleCards, setVisibleCards] = useState(3);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setVisibleCards(getVisibleCards());
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const maxIndex = testimonials.length - visibleCards;
-
-  const nextSlide = useCallback(() => {
-    setCurrentIndex(current => 
-      current >= maxIndex ? 0 : current + 1
-    );
-  }, [maxIndex]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentIndex(current => 
-      current === 0 ? maxIndex : current - 1
-    );
-  }, [maxIndex]);
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-  };
-
-  // Autoplay
-  useEffect(() => {
-    if (!isHovered) {
-      const interval = setInterval(nextSlide, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [isHovered, nextSlide]);
+  const {
+    currentIndex,
+    isHovered,
+    visibleCards,
+    maxIndex,
+    nextSlide,
+    prevSlide,
+    goToSlide,
+    setIsHovered
+  } = useTestimonials(testimonials.length);
 
   return (
     <section id="depoimentos" className="py-20 bg-gradient-to-b from-gray-950 to-black">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        
+
         {/* Cabeçalho da Seção */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -181,18 +91,18 @@ export default function RefinedTestimonialsSection() {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="h-1 bg-cyan-500 mx-auto mb-6 rounded-full"
           />
-          
+
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Depoimentos Reais
+            {SECTION_CONFIG.title}
           </h2>
-          
+
           <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            A confiança dos nossos clientes é nosso maior orgulho.
+            {SECTION_CONFIG.subtitle}
           </p>
         </motion.div>
 
         {/* Carrossel Container */}
-        <div 
+        <div
           className="relative"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
@@ -201,12 +111,7 @@ export default function RefinedTestimonialsSection() {
           <div className="overflow-hidden">
             <motion.div
               className="flex gap-6"
-              animate={{ x: `-${currentIndex * (100 / visibleCards)}%` }}
-              transition={{ 
-                type: "spring", 
-                stiffness: 300, 
-                damping: 30 
-              }}
+              animate={getCarouselAnimation(currentIndex, visibleCards)}
             >
               {testimonials.map((testimonial) => (
                 <div
@@ -224,8 +129,7 @@ export default function RefinedTestimonialsSection() {
           <div className="absolute inset-y-0 w-full flex justify-between items-center pointer-events-none">
             <motion.button
               onClick={prevSlide}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              {...buttonVariants}
               className="pointer-events-auto z-20 p-3 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-full text-white transition-all shadow-lg -ml-4 hover:bg-cyan-600 hover:border-cyan-500"
               aria-label="Depoimento Anterior"
             >
@@ -234,8 +138,7 @@ export default function RefinedTestimonialsSection() {
 
             <motion.button
               onClick={nextSlide}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              {...buttonVariants}
               className="pointer-events-auto z-20 p-3 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-full text-white transition-all shadow-lg -mr-4 hover:bg-cyan-600 hover:border-cyan-500"
               aria-label="Próximo Depoimento"
             >
@@ -252,11 +155,10 @@ export default function RefinedTestimonialsSection() {
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex 
-                    ? 'bg-cyan-500 w-6' 
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
+                    ? 'bg-cyan-500 w-6'
                     : 'bg-gray-600 hover:bg-gray-500'
-                }`}
+                  }`}
                 aria-label={`Ir para o slide ${index + 1}`}
               />
             ))}
@@ -282,7 +184,7 @@ export default function RefinedTestimonialsSection() {
           className="text-center mt-12"
         >
           <p className="text-gray-500">
-            Junte-se aos <span className="text-cyan-400 font-semibold">+100 clientes</span> satisfeitos
+            Junte-se aos <span className="text-cyan-400 font-semibold">{SECTION_CONFIG.clientCount}</span> satisfeitos
           </p>
         </motion.div>
       </div>
