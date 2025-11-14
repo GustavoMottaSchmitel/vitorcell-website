@@ -37,7 +37,7 @@ const categories = [
         ]
     },
     {
-        name: "Produtos & Acessórios Premium",
+        name: "Produtos & Acessórios",
         description: "Os melhores acessórios e aparelhos novos com garantia e qualidade superior.",
         icon: Smartphone,
         gradient: "from-purple-500 to-pink-500",
@@ -309,7 +309,7 @@ export default function PremiumServicesSection() {
                             Suporte especializado para as principais marcas do mercado
                         </p>
                         <div className="flex justify-center items-center space-x-8 text-gray-400">
-                            {["Apple", "Samsung", "Xiaomi", "Motorola", "Asus"].map((brand, index) => (
+                            {["Apple", "Samsung", "Xiaomi", "Motorola"].map((brand, index) => (
                                 <motion.div
                                     key={brand}
                                     initial={{ opacity: 0, scale: 0 }}

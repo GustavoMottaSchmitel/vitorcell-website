@@ -227,17 +227,18 @@ export default function PremiumTechProductsSection() {
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
 
                   {/* Imagem do Produto - TAMANHO MÁXIMO OTIMIZADO */}
-                  <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-full h-full flex items-center justify-center p-4"> 
                     <motion.div
-                      className="relative w-full h-full max-w-[580px] max-h-[680px] min-h-[580px]"
-                      whileHover={{ scale: 1.01 }}
+                      className="relative w-80 h-96"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
                     >
                       <Image
                         src={currentProduct.image}
                         alt={currentProduct.name}
                         fill
                         className="object-contain drop-shadow-2xl"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 70vw, 55vw"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
                         priority
                       />
                     </motion.div>

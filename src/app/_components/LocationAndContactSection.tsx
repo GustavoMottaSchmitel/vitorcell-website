@@ -324,6 +324,7 @@ export default function PremiumLocationAndContactSection() {
                                             <p className="text-lg font-semibold text-white">R. Humberto de Campos, 307</p>
                                             <p className="text-gray-400">Parque Res. Laranjeiras, Serra - ES</p>
                                             <motion.a
+                                                id='localizacao'
                                                 href="https://www.google.com/maps/search/?api=1&query=R.+Humberto+de+Campos,+307,+Serra+-+ES"
                                                 target="_blank"
                                                 rel="noopener noreferrer"

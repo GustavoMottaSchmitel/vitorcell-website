@@ -9,8 +9,8 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 const navLinks = [
     { name: "Serviços", href: "#servicos", icon: Smartphone },
     { name: "Orçamento", href: "#orcamento", icon: DollarSign },
-    { name: "Localização", href: "#localizacao", icon: MapPin },
-    { name: "Contato", href: "#contato", icon: Mail },
+    { name: "Localização", href: "#orcamento", icon: MapPin },
+    { name: "Contato", href: "#orcamento", icon: Mail },
     { name: "Produtos", href: "#produtos", icon: ShoppingCart}
 ];
 
