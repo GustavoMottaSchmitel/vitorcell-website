@@ -4,22 +4,22 @@ import { Camera, Cpu, Battery, Zap, Sparkles } from 'lucide-react';
 export const products: Product[] = [
   {
     id: 1,
-    name: "iPhone 15 Pro Max",
+    name: "iPhone 17 Pro",
     brand: "Apple",
-    price: "R$ 5.999",
+    price: "R$ 8.999",
     storage: "256GB",
     color: "Titânio Natural",
-    condition: "Seminovo",
-    batteryHealth: "96%",
-    image: "/iphone-17promax.png",
-    description: "Performance máxima em estado impecável. Todas as funcionalidades preservadas como novo.",
+    condition: "Novo",
+    batteryHealth: "100%",
+    image: "/iphone-17-pro-nobg.png",
+    description: "Poder, inteligência e design. Tudo em um só lugar.",
     features: [
-      { icon: Camera, text: "Câmera 48MP Pro", description: "Sistema avançado" },
-      { icon: Cpu, text: "Chip A17 Pro", description: "Velocidade extrema" },
-      { icon: Battery, text: "Bateria 4422mAh", description: "96% saúde" },
-      { icon: Zap, text: "USB-C", description: "Carregamento rápido" }
+      { icon: Camera, text: "Câmera Fusion Pro de 48 MP", description: "Capture cada detalhe com clareza impressionante" },
+      { icon: Cpu, text: "Chip A19 Pro", description: "O processador mais rápido do mercado, sem travamentos" },
+      { icon: Battery, text: "Bateria 4422mAh", description: "Bateria que dura o dia inteiro" },
+      { icon: Zap, text: "Dynamic Island", description: "Um hub dinâmico de informações, alertas e atividades em tempo real, integrado à interface." }
     ],
-    whatsappMessage: "Olá! Gostaria de comprar o iPhone 15 Pro Max 256GB Titânio Natural"
+    whatsappMessage: "Olá! Gostaria de comprar o iPhone 17 Pro 256GB Titânio Natural"
   },
   {
     id: 2,

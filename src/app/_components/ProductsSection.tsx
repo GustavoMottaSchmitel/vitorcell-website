@@ -12,24 +12,23 @@ const ProductImage = ({ product }: { product: any }) => (
   <div className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl p-8 border border-gray-700/50 shadow-2xl">
     <div className="relative h-96 bg-gradient-to-b from-gray-900 to-gray-800 rounded-2xl overflow-hidden border border-cyan-500/20">
       <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5"></div>
-      
-      <div className="w-full h-full flex items-center justify-center p-4">
+
+      <div className="w-full h-full flex items-center justify-center">
         <motion.div
-          className="relative w-80 h-96"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
+          className="relative w-full h-full max-w-[580px] max-h-[680px] min-h-[580px]"
+          whileHover={{ scale: 1.01 }}
         >
           <Image
             src={product.image}
             alt={product.name}
             fill
             className="object-contain drop-shadow-2xl"
-            sizes="(max-width: 1024px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 70vw, 55vw"
             priority
           />
         </motion.div>
       </div>
-      
+
       <div className="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
     </div>
 
@@ -84,11 +83,11 @@ const ProductFeatures = ({ features }: { features: any[] }) => (
 );
 
 // Componente de Miniaturas
-const ProductThumbnails = ({ 
-  products, 
-  currentIndex, 
-  onThumbnailClick 
-}: { 
+const ProductThumbnails = ({
+  products,
+  currentIndex,
+  onThumbnailClick
+}: {
   products: any[];
   currentIndex: number;
   onThumbnailClick: (index: number) => void;
@@ -99,11 +98,10 @@ const ProductThumbnails = ({
         key={product.id}
         onClick={() => onThumbnailClick(index)}
         whileHover={{ scale: 1.05, y: -5 }}
-        className={`relative rounded-2xl p-6 text-center transition-all duration-300 border-2 backdrop-blur-sm overflow-hidden group ${
-          index === currentIndex
-            ? 'border-cyan-400 bg-cyan-500/10 shadow-2xl shadow-cyan-400/25'
-            : 'border-gray-700 bg-gray-800/30 hover:border-cyan-500/50'
-        }`}
+        className={`relative rounded-2xl p-6 text-center transition-all duration-300 border-2 backdrop-blur-sm overflow-hidden group ${index === currentIndex
+          ? 'border-cyan-400 bg-cyan-500/10 shadow-2xl shadow-cyan-400/25'
+          : 'border-gray-700 bg-gray-800/30 hover:border-cyan-500/50'
+          }`}
       >
         <div className={`absolute inset-0 bg-gradient-to-br ${getBrandGradient(product.brand)} opacity-0 group-hover:opacity-5 transition-opacity duration-300`}></div>
 
@@ -210,11 +208,10 @@ export default function PremiumTechProductsSection() {
               onClick={() => handleFilterChange(filterItem.key)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-sm border ${
-                filter === filterItem.key
-                  ? `bg-gradient-to-r ${getBrandGradient(filterItem.key === 'all' ? 'apple' : filterItem.key)} text-white shadow-2xl border-transparent`
-                  : 'bg-gray-800/50 text-gray-300 border-gray-700 hover:bg-gray-700/50'
-              }`}
+              className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 backdrop-blur-sm border ${filter === filterItem.key
+                ? `bg-gradient-to-r ${getBrandGradient(filterItem.key === 'all' ? 'apple' : filterItem.key)} text-white shadow-2xl border-transparent`
+                : 'bg-gray-800/50 text-gray-300 border-gray-700 hover:bg-gray-700/50'
+                }`}
             >
               {filterItem.label}
               <span className="ml-2 text-sm opacity-90">({filterItem.count})</span>
@@ -331,11 +328,10 @@ export default function PremiumTechProductsSection() {
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? 'bg-cyan-400 scale-125 shadow-lg shadow-cyan-400/50'
-                      : 'bg-gray-600 hover:bg-gray-500'
-                  }`}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                    ? 'bg-cyan-400 scale-125 shadow-lg shadow-cyan-400/50'
+                    : 'bg-gray-600 hover:bg-gray-500'
+                    }`}
                 />
               ))}
             </div>
