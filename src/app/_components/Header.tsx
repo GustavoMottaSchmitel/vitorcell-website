@@ -144,7 +144,7 @@ export default function RefinedHeader() {
 
                         {/* Botão de WhatsApp */}
                         <motion.a
-                            href="https://wa.me/5527999765211"
+                            href="https://wa.me/5527996144142"
                             target="_blank"
                             rel="noopener noreferrer"
                             variants={linkVariants}
@@ -210,7 +210,7 @@ export default function RefinedHeader() {
                             
                             {/* Botão WhatsApp Mobile */}
                             <motion.a
-                                href="https://wa.me/5527999765211"
+                                href="https://wa.me/5527996144142"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={() => setIsMenuOpen(false)}

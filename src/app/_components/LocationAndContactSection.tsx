@@ -96,7 +96,7 @@ const QuoteForm = () => {
         
         setTimeout(() => {
             setStatus('success');
-            const whatsappNumber = '5527999765211'; 
+            const whatsappNumber = '5527996144142'; 
             const defaultMessage = `Olá, gostaria de um orçamento rápido para o meu aparelho.
 Modelo: ${inputModel}
 Problema: ${inputProblem}
