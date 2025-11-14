@@ -61,8 +61,7 @@ const stats = [
     { value: "100%", label: "Peças Originais" }
 ];
 
-// Array de marcas para o carrossel infinito
-const brands = ["Apple", "Samsung", "Xiaomi", "Motorola", "Asus", "LG", "Nokia"];
+const brands = ["Apple", "Samsung", "Xiaomi", "Motorola"];
 
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
