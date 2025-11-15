@@ -11,7 +11,7 @@ export const products: Product[] = [
     color: "Consultar WhatsApp",
     condition: "Novo",
     batteryHealth: "100%",
-    image: "/iphone-17-pro-2.png",
+    image: "/iphone-17pro.png",
     description: "O equilíbrio perfeito entre potência, inteligência e um design que impressiona.",
     features: [
       { icon: Camera, text: "Câmera Fusion Pro 48MP", description: "Fotografia de nível profissional mesmo em baixa luz" },
@@ -99,6 +99,234 @@ export const products: Product[] = [
       { icon: Sparkles, text: "Tela AMOLED 120Hz", description: "Visual fluido com cores vibrantes e pretos profundos" }
     ],
     whatsappMessage: "Olá! Gostaria de consultar sobre o Redmi Note 14 Pro - NOVO"
+  },
+  {
+    id: 6,
+    name: "iPhone 13",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-13-1.png",
+    description: "O clássico moderno da Apple: rápido, elegante e com câmeras que impressionam até hoje.",
+    features: [
+      { icon: Camera, text: "Câmera Dupla 12MP", description: "Fotos nítidas com modo retrato e gravação em 4K" },
+      { icon: Cpu, text: "Chip A15 Bionic", description: "Desempenho rápido para jogos, apps e multitarefas" },
+      { icon: Battery, text: "Bateria 3240mAh", description: "Autonomia para o dia inteiro com eficiência da Apple" },
+      { icon: Zap, text: "Tela Super Retina XDR", description: "Cores vibrantes e brilho impressionante em qualquer ambiente" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 13"
+  },
+  {
+    id: 7,
+    name: "iPhone 13 Pro",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-13-pro.png",
+    description: "Desempenho profissional, câmeras de cinema e acabamento premium em cada detalhe.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 12MP Pro", description: "Modo Cinema, macro e fotos incríveis em qualquer luz" },
+      { icon: Cpu, text: "Chip A15 Bionic Pro", description: "Poder para edição, jogos pesados e multitarefa extrema" },
+      { icon: Battery, text: "Bateria 3095mAh", description: "Autonomia otimizada com eficiência Apple" },
+      { icon: Zap, text: "Tela ProMotion 120Hz", description: "Suavidade absurda e resposta instantânea" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 13 Pro"
+  },
+  {
+    id: 8,
+    name: "iPhone 13 Pro Max",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone 13-pro-max.png",
+    description: "A versão máxima do desempenho Pro: tela gigante, bateria poderosa e câmeras profissionais.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 12MP Pro Max", description: "Zoom avançado, macro e gravações cinematográficas" },
+      { icon: Cpu, text: "Chip A15 Bionic Pro", description: "Desempenho veloz e estável para qualquer tarefa" },
+      { icon: Battery, text: "Bateria 4352mAh", description: "Uma das melhores autonomias já vistas em um iPhone" },
+      { icon: Zap, text: "Tela ProMotion 120Hz 6.7\"", description: "Experiência visual fluida e imersiva" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 13 Pro Max"
+  },
+  {
+    id: 9,
+    name: "iPhone 14",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-14.png",
+    description: "Simples, rápido e confiável. A evolução do clássico com câmeras ainda mais poderosas.",
+    features: [
+      { icon: Camera, text: "Câmera Dupla 12MP", description: "Fotografia avançada com modo ação e gravação em 4K" },
+      { icon: Cpu, text: "Chip A15 Bionic", description: "Desempenho rápido e eficiente para qualquer rotina" },
+      { icon: Battery, text: "Bateria 3279mAh", description: "Autonomia para o dia inteiro sem esforço" },
+      { icon: Zap, text: "Tela Super Retina XDR", description: "Brilho, nitidez e cores vibrantes em qualquer ambiente" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 14"
+  },
+  {
+    id: 10,
+    name: "iPhone 14 Pro",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-14-pro.png",
+    description: "Câmera profissional, performance absurda e a nova Dynamic Island. O Pro mais inteligente.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 48MP Pro", description: "Fotos detalhadas, macro impressionante e vídeos cinematográficos" },
+      { icon: Cpu, text: "Chip A16 Bionic", description: "Potência extrema para jogos, edições e multitarefas pesadas" },
+      { icon: Battery, text: "Bateria 3200mAh", description: "Eficiência e autonomia surpreendentes" },
+      { icon: Zap, text: "Dynamic Island", description: "Alertas inteligentes e interações em tempo real" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 14 Pro"
+  },
+  {
+    id: 11,
+    name: "iPhone 14 Pro Max",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-14-pro-max.png",
+    description: "A experiência Pro em sua forma máxima: mais tela, mais bateria e a melhor câmera da Apple.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 48MP Pro Max", description: "Qualidade absurda com zoom avançado e modo cinema" },
+      { icon: Cpu, text: "Chip A16 Bionic", description: "Desempenho poderoso e suave em tudo" },
+      { icon: Battery, text: "Bateria 4323mAh", description: "Até dois dias de uso moderado" },
+      { icon: Zap, text: "Dynamic Island + Tela 120Hz", description: "Experiência fluida, interativa e imersiva" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 14 Pro Max"
+  },
+  {
+    id: 12,
+    name: "iPhone 15",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-15.png",
+    description: "Design moderno, câmera avançada e USB-C. O iPhone que marcou uma nova geração.",
+    features: [
+      { icon: Camera, text: "Câmera Dupla 48MP", description: "Fotos super nítidas e gravações de alta qualidade" },
+      { icon: Cpu, text: "Chip A16 Bionic", description: "Desempenho rápido, suave e eficiente" },
+      { icon: Battery, text: "Bateria 3349mAh", description: "Autonomia otimizada com maior eficiência" },
+      { icon: Zap, text: "USB-C + Tela Super Retina XDR", description: "Praticidade e qualidade visual impressionante" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 15"
+  },
+  {
+    id: 13,
+    name: "iPhone 15 Pro",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-15-pro.png",
+    description: "Construído em titânio, super leve, ultrarrápido e com câmeras profissionais. Um verdadeiro salto de geração.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 48MP Pro", description: "Detalhes absurdos, fotos noturnas impecáveis e vídeos cinematográficos" },
+      { icon: Cpu, text: "Chip A17 Pro", description: "Um monstro de performance para jogos e apps pesados" },
+      { icon: Battery, text: "Bateria 3274mAh", description: "Eficiência surpreendente mesmo com alto desempenho" },
+      { icon: Zap, text: "Dynamic Island + Ação em Titânio", description: "Interação inteligente em um corpo premium e leve" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 15 Pro"
+  },
+  {
+    id: 14,
+    name: "iPhone 15 Pro Max",
+    brand: "Apple",
+    price: "R$ 9.999",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-15-pro-max.png",
+    description: "O topo absoluto da Apple: câmeras profissionais, titânio, bateria incrível e desempenho brutal.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 48MP com Zoom 5x", description: "Zoom periscópio poderoso e qualidade profissional" },
+      { icon: Cpu, text: "Chip A17 Pro", description: "Rodando jogos AAA com gráficos de console" },
+      { icon: Battery, text: "Bateria 4422mAh", description: "Autonomia de destaque entre todos os iPhones" },
+      { icon: Zap, text: "Dynamic Island + Tela 120Hz", description: "Experiência extremamente fluida e imersiva" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 15 Pro Max"
+  },
+  {
+    id: 15,
+    name: "iPhone 16",
+    brand: "Apple",
+    price: "Consultar WhatsApp",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-16.png",
+    description: "O novo iPhone 16 chega com mais desempenho, câmeras aprimoradas e a nova linha de recursos com inteligência Apple.",
+    features: [
+      { icon: Camera, text: "Câmera Dupla 48MP", description: "Fotos mais nítidas e modo Retrato ainda melhor" },
+      { icon: Cpu, text: "Chip A18", description: "Mais rápido, mais eficiente e preparado para IA" },
+      { icon: Battery, text: "Bateria 3577mAh", description: "Ótima autonomia para o dia todo" },
+      { icon: Zap, text: "Tela 60Hz Super Retina XDR", description: "Brilho alto e cores impressionantes" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 16"
+  },
+  {
+    id: 16,
+    name: "iPhone 16 Pro",
+    brand: "Apple",
+    price: "Consultar WhatsApp",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-16-pro.png",
+    description: "Construído em titânio, veloz como nunca com o novo A18 Pro e câmeras de nível profissional.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 48MP", description: "Mais alcance, nitidez e capacidades de fotografia profissional" },
+      { icon: Cpu, text: "Chip A18 Pro", description: "Desempenho absurdo com foco em jogos e IA" },
+      { icon: Battery, text: "Bateria 3561mAh", description: "Excelente autonomia mesmo com alta performance" },
+      { icon: Zap, text: "Tela ProMotion 120Hz", description: "Fluidez máxima e experiência premium" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 16 Pro"
+  },
+  {
+    id: 17,
+    name: "iPhone 16 Pro Max",
+    brand: "Apple",
+    price: "Consultar WhatsApp",
+    storage: "Consultar WhatsApp",
+    color: "Consultar WhatsApp",
+    condition: "Seminovo",
+    batteryHealth: "Consultar WhatsApp",
+    image: "/iphone-16-pro.png",
+    description: "O mais avançado iPhone já feito: câmeras de cinema, o chip mais poderoso da Apple e a maior bateria da linha.",
+    features: [
+      { icon: Camera, text: "Câmera Tripla 48MP com Zoom 5x", description: "Zoom óptico poderoso e qualidade profissional" },
+      { icon: Cpu, text: "Chip A18 Pro", description: "Arquitetura otimizada para IA, jogos e máxima performance" },
+      { icon: Battery, text: "Bateria 4676mAh", description: "A melhor autonomia já vista em um iPhone" },
+      { icon: Zap, text: "Tela ProMotion 120Hz", description: "Brilho extremo e fluidez de outro nível" }
+    ],
+    whatsappMessage: "Olá! Gostaria de consultar sobre o iPhone 16 Pro Max"
   }
 ];
 

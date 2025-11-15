@@ -1,52 +1,46 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Send, MessageCircle, MapPin } from 'lucide-react';
+import { Send, MessageCircle, MapPin, Phone, Clock, Mail } from 'lucide-react';
 
 import { contactInfo, benefits, COMPANY_INFO } from '@/app/data/contactData';
 import { useContactForm } from '@/app/hooks/useContactForm';
 import { containerVariants, itemVariants, cardVariants, formInputVariants, getMapsUrl } from '@/app/utils/contactHelpers';
 
 // Componente Principal
-export default function PremiumContactSection() {
+export default function LightContactSection() {
   const { status, handleSubmit } = useContactForm();
 
   return (
-    <section id="orcamento" className="relative py-24 md:py-32 bg-gradient-to-b from-gray-950 to-black overflow-hidden">
-      {/* Background Elements Sutis */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-1/2 -right-1/4 w-1/2 h-1/2 bg-cyan-500/3 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-1/2 -left-1/4 w-1/2 h-1/2 bg-blue-500/3 rounded-full blur-3xl"></div>
-      </div>
+    <section id="orcamento" className="relative py-16 bg-gradient-to-b from-gray-950 to-black">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
-
-        {/* Título da Seção */}
+        {/* Título da Seção Simplificado */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-center mb-20"
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-12"
         >
           <motion.div
             initial={{ width: 0 }}
-            whileInView={{ width: "80px" }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="h-1 bg-cyan-500 mx-auto mb-8 rounded-full"
+            whileInView={{ width: "50px" }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="h-1 bg-cyan-500 mx-auto mb-4 rounded-full"
           />
 
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
             Fale Conosco
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Visite nossa loja ou solicite um orçamento rápido. Estamos prontos para te atender!
+          <p className="text-gray-400 max-w-xl mx-auto text-sm">
+            Visite nossa loja ou solicite um orçamento rápido
           </p>
         </motion.div>
 
-        {/* Benefits Cards Sutis */}
+        {/* Benefits Cards Simplificados */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
@@ -58,16 +52,15 @@ export default function PremiumContactSection() {
               <motion.div
                 key={benefit.text}
                 variants={itemVariants}
-                whileHover={{ y: -5 }}
-                className="group p-6 bg-gray-900/30 backdrop-blur-sm border border-gray-700/30 rounded-xl text-center hover:border-cyan-500/20 transition-all duration-300"
+                className="group p-4 bg-gray-900/20 border border-gray-700/20 rounded-lg text-center hover:border-cyan-500/10 transition-all duration-200"
               >
-                <div className="inline-flex p-3 rounded-xl bg-cyan-500/10 text-cyan-400 mb-4 border border-cyan-500/20">
-                  <BenefitIcon size={24} />
+                <div className="inline-flex p-2 rounded-lg bg-cyan-500/10 text-cyan-400 mb-3">
+                  <BenefitIcon size={20} />
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">
+                <h3 className="text-base font-semibold text-white mb-1">
                   {benefit.text}
                 </h3>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-400 text-xs">
                   {benefit.description}
                 </p>
               </motion.div>
@@ -76,45 +69,37 @@ export default function PremiumContactSection() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.1 }}
         >
           
-          {/* =============================================
-              COLUNA 1: Formulário de Orçamento
-          ============================================= */}
+          {/* COLUNA 1: Formulário de Orçamento Simplificado */}
           <div>
-            <motion.div variants={cardVariants} className="relative group">
-              <div className="absolute inset-0 bg-cyan-500/5 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-
-              <form onSubmit={handleSubmit} className="relative p-8 bg-gradient-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-700/30 rounded-2xl shadow-2xl space-y-6">
+            <motion.div variants={cardVariants}>
+              <form onSubmit={handleSubmit} className="p-6 bg-gray-900/20 border border-gray-700/20 rounded-xl space-y-4">
                 {/* Header do Form */}
-                <div className="text-center mb-2">
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="inline-flex p-3 rounded-2xl bg-cyan-500/20 text-cyan-400 mb-4 border border-cyan-500/30"
-                  >
-                    <MessageCircle size={28} />
-                  </motion.div>
-                  <h3 className="text-3xl font-bold text-white mb-2">
+                <div className="text-center mb-4">
+                  <div className="inline-flex p-2 rounded-lg bg-cyan-500/10 text-cyan-400 mb-3">
+                    <MessageCircle size={20} />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-1">
                     Orçamento Rápido
                   </h3>
-                  <p className="text-gray-400">Preencha os dados e vamos te atender no WhatsApp</p>
+                  <p className="text-gray-400 text-sm">Preencha e vamos te atender no WhatsApp</p>
                 </div>
 
                 {/* Campos do Formulário */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <motion.input
                     {...formInputVariants}
                     name="name"
                     type="text"
                     placeholder="Seu Nome"
                     required
-                    className="w-full p-4 bg-gray-800/30 border border-gray-600/30 rounded-xl text-white focus:ring-1 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300 backdrop-blur-sm"
+                    className="w-full p-3 bg-gray-800/20 border border-gray-600/20 rounded-lg text-white text-sm focus:border-cyan-500/50 transition-colors"
                   />
                   <motion.input
                     {...formInputVariants}
@@ -122,23 +107,23 @@ export default function PremiumContactSection() {
                     type="tel"
                     placeholder="WhatsApp (XX) XXXXX-XXXX"
                     required
-                    className="w-full p-4 bg-gray-800/30 border border-gray-600/30 rounded-xl text-white focus:ring-1 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300 backdrop-blur-sm"
+                    className="w-full p-3 bg-gray-800/20 border border-gray-600/20 rounded-lg text-white text-sm focus:border-cyan-500/50 transition-colors"
                   />
                   <motion.input
                     {...formInputVariants}
                     name="model"
                     type="text"
-                    placeholder="Modelo do Aparelho (Ex: iPhone 11)"
+                    placeholder="Modelo do Aparelho"
                     required
-                    className="w-full p-4 bg-gray-800/30 border border-gray-600/30 rounded-xl text-white focus:ring-1 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300 backdrop-blur-sm"
+                    className="w-full p-3 bg-gray-800/20 border border-gray-600/20 rounded-lg text-white text-sm focus:border-cyan-500/50 transition-colors"
                   />
                   <motion.textarea
                     {...formInputVariants}
                     name="problem"
-                    placeholder="Descreva o problema (Ex: Tela trincada)"
-                    rows={4}
+                    placeholder="Descreva o problema"
+                    rows={3}
                     required
-                    className="w-full p-4 bg-gray-800/30 border border-gray-600/30 rounded-xl text-white focus:ring-1 focus:ring-cyan-500/50 focus:border-cyan-500 transition-all duration-300 resize-none backdrop-blur-sm"
+                    className="w-full p-3 bg-gray-800/20 border border-gray-600/20 rounded-lg text-white text-sm focus:border-cyan-500/50 transition-colors resize-none"
                   />
                 </div>
 
@@ -148,18 +133,17 @@ export default function PremiumContactSection() {
                   disabled={status === 'loading'}
                   whileHover={{ scale: status === 'idle' ? 1.02 : 1 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center justify-center space-x-3 px-8 py-4 text-lg font-bold rounded-xl transition-all duration-300 
-                             bg-cyan-600 text-white shadow-lg shadow-cyan-600/20 
-                             hover:bg-cyan-500 hover:shadow-cyan-500/30 disabled:bg-gray-600 disabled:shadow-none"
+                  className="w-full flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold rounded-lg transition-all duration-200 
+                             bg-cyan-600 text-white hover:bg-cyan-500 disabled:bg-gray-600"
                 >
                   {status === 'loading' ? (
                     <>
-                      <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent" />
                       <span>Enviando...</span>
                     </>
                   ) : (
                     <>
-                      <Send size={20} />
+                      <Send size={16} />
                       <span>Enviar e Abrir WhatsApp</span>
                     </>
                   )}
@@ -168,36 +152,29 @@ export default function PremiumContactSection() {
             </motion.div>
           </div>
 
-          {/* =============================================
-              COLUNA 2: Informações de Contato e Mapa
-          ============================================= */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            {/* Bloco de Contatos */}
-            <motion.div
-              variants={cardVariants}
-              className="group relative"
-            >
-              <div className="absolute inset-0 bg-cyan-500/3 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-
-              <div className="relative p-8 bg-gradient-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-700/30 rounded-2xl shadow-2xl">
-                <h3 className="text-3xl font-bold text-white mb-8">
+          {/* COLUNA 2: Informações de Contato e Mapa Simplificados */}
+          <motion.div variants={itemVariants} className="space-y-6">
+            {/* Bloco de Contatos Simplificado */}
+            <motion.div variants={cardVariants}>
+              <div className="p-6 bg-gray-900/20 border border-gray-700/20 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Nossos Contatos
                 </h3>
-                <div className="space-y-6">
+                <div className="space-y-4">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
                     return (
                       <motion.div
                         key={index}
-                        whileHover={{ x: 8 }}
-                        className="flex items-start space-x-4 p-4 rounded-xl border border-transparent hover:border-gray-600/30 hover:bg-gray-800/20 transition-all duration-300"
+                        whileHover={{ x: 4 }}
+                        className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-800/20 transition-colors"
                       >
-                        <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                          <Icon size={20} />
+                        <div className="p-2 rounded-md bg-cyan-500/10 text-cyan-400">
+                          <Icon size={16} />
                         </div>
                         <div className="flex-1">
-                          <p className="text-gray-400 font-medium text-sm">{info.text}</p>
-                          <p className="text-lg text-white font-semibold">{info.detail}</p>
+                          <p className="text-gray-400 text-xs">{info.text}</p>
+                          <p className="text-white text-sm font-medium">{info.detail}</p>
                         </div>
                       </motion.div>
                     );
@@ -206,42 +183,34 @@ export default function PremiumContactSection() {
               </div>
             </motion.div>
 
-            {/* Bloco do Mapa */}
-            <motion.div
-              variants={cardVariants}
-              className="group relative"
-            >
-              <div className="absolute inset-0 bg-cyan-500/3 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" />
-
-              <div className="relative p-8 bg-gradient-to-br from-gray-900/50 to-gray-950/50 backdrop-blur-sm border border-gray-700/30 rounded-2xl shadow-2xl">
-                <h3 className="text-2xl font-bold text-white mb-6 flex items-center space-x-3">
-                  <MapPin className="text-cyan-400" size={24} />
+            {/* Bloco do Mapa Simplificado */}
+            <motion.div variants={cardVariants}>
+              <div className="p-6 bg-gray-900/20 border border-gray-700/20 rounded-xl">
+                <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                  <MapPin className="text-cyan-400" size={18} />
                   <span>Nossa Localização</span>
                 </h3>
 
-                <div className="aspect-video bg-gray-800 rounded-xl overflow-hidden border border-gray-600/30 shadow-lg">
+                <div className="aspect-video bg-gray-800 rounded-lg overflow-hidden border border-gray-600/20 mb-3">
                   <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-cyan-500/5 to-blue-500/5">
                     <div className="text-center text-cyan-400">
-                      <MapPin size={48} className="mx-auto mb-4 opacity-60" />
-                      <p className="text-lg font-semibold text-white">{COMPANY_INFO.address}</p>
-                      <p className="text-gray-400">Parque Res. Laranjeiras, Serra - ES</p>
-                      <motion.a
-                        id='localizacao'
-                        href={getMapsUrl(COMPANY_INFO.mapsQuery)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.05 }}
-                        className="inline-block mt-4 px-6 py-2 bg-cyan-600 text-white rounded-lg font-semibold hover:bg-cyan-500 transition-colors"
-                      >
-                        Abrir no Google Maps
-                      </motion.a>
+                      <MapPin size={32} className="mx-auto mb-2 opacity-60" />
+                      <p className="text-sm font-semibold text-white">{COMPANY_INFO.address}</p>
+                      <p className="text-gray-400 text-xs">Parque Res. Laranjeiras, Serra - ES</p>
                     </div>
                   </div>
                 </div>
 
-                <p className="text-sm text-gray-500 mt-4 text-center">
-                  Estamos te esperando para um atendimento personalizado!
-                </p>
+                <motion.a
+                  id='localizacao'
+                  href={getMapsUrl(COMPANY_INFO.mapsQuery)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.02 }}
+                  className="block w-full text-center px-4 py-2 bg-cyan-600 text-white text-sm rounded-lg font-medium hover:bg-cyan-500 transition-colors"
+                >
+                  Abrir no Google Maps
+                </motion.a>
               </div>
             </motion.div>
           </motion.div>
