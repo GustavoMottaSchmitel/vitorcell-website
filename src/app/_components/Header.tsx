@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Menu, X, Smartphone, DollarSign, MapPin, Mail, Phone, ShoppingCart } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
     { name: "Serviços", href: "#servicos", icon: Smartphone },
@@ -13,7 +12,7 @@ const navLinks = [
     { name: "Produtos", href: "#produtos", icon: ShoppingCart }
 ];
 
-export default function OptimizedHeader() {
+export default function UltraLightHeader() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -29,123 +28,103 @@ export default function OptimizedHeader() {
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
     return (
-        <motion.header
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            className={`fixed top-0 left-0 w-full z-50 transition-all duration-200 ${
+        <header
+            className={`fixed top-0 left-0 w-full z-50 transition-colors duration-150 ${
                 isScrolled
-                    ? 'bg-gray-950/90 backdrop-blur-sm border-b border-gray-800/20'
+                    ? 'bg-gray-950 border-b border-gray-800'
                     : 'bg-transparent'
             }`}
         >
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
-                <nav className="flex items-center justify-between h-16">
+                <nav className="flex items-center justify-between h-14">
 
-                    {/* Logo Otimizada */}
+                    {/* Logo Ultra Leve */}
                     <a
                         href='#'
-                        className='flex items-center space-x-2 z-50 group'
+                        className='flex items-center space-x-2 z-50'
                     >
-                        <div className="relative">
-                            <Image
-                                src="/logo-vitorcell.png"
-                                alt="VitorCell - Assistência Técnica"
-                                width={36}
-                                height={36}
-                                priority
-                                className="w-9 h-9"
-                            />
-                        </div>
+                        <Image
+                            src="/logo-vitorcell.png"
+                            alt="VitorCell - Assistência Técnica"
+                            width={32}
+                            height={32}
+                            priority
+                            className="w-8 h-8"
+                        />
                         <div className="hidden sm:block">
-                            <span className="text-lg font-bold text-white">VitorCell</span>
+                            <span className="text-base font-bold text-white">VitorCell</span>
                             <span className="text-cyan-400 text-xs block">Assistência Técnica</span>
                         </div>
                     </a>
 
-                    {/* Menu Desktop Otimizado */}
-                    <div className="hidden lg:flex items-center space-x-6">
+                    {/* Menu Desktop Ultra Leve */}
+                    <div className="hidden lg:flex items-center space-x-4">
                         {navLinks.map((link) => (
                             <a
                                 key={link.name}
                                 href={link.href}
-                                className="text-gray-300 hover:text-cyan-400 transition-colors duration-200 font-medium text-sm relative group"
+                                className="text-gray-300 hover:text-cyan-400 transition-colors text-sm"
                             >
                                 {link.name}
-                                <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-500 group-hover:w-full transition-all duration-200" />
                             </a>
                         ))}
 
-                        {/* Botão de WhatsApp Otimizado */}
+                        {/* Botão de WhatsApp Ultra Leve */}
                         <a
                             href="https://wa.me/5527996144142"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex items-center space-x-2 px-4 py-2 text-sm font-semibold rounded-lg transition-all duration-200 bg-cyan-600 text-white hover:bg-cyan-500"
+                            className="flex items-center space-x-1 px-3 py-1.5 text-sm font-medium rounded bg-cyan-600 text-white hover:bg-cyan-500 transition-colors"
                         >
-                            <Phone size={16} />
+                            <Phone size={14} />
                             <span>Orçamento</span>
                         </a>
                     </div>
 
-                    {/* Botão Mobile Toggle Otimizado */}
+                    {/* Botão Mobile Toggle Ultra Leve */}
                     <button
                         onClick={toggleMenu}
-                        className="lg:hidden p-2 text-gray-300 hover:text-cyan-400 z-50 transition-colors rounded"
+                        className="lg:hidden p-1 text-gray-300 hover:text-cyan-400 z-50 transition-colors"
                         aria-label="Toggle Menu"
                     >
-                        {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                        {isMenuOpen ? <X size={18} /> : <Menu size={18} />}
                     </button>
                 </nav>
             </div>
 
-            {/* Menu Mobile Otimizado */}
-            <AnimatePresence>
-                {isMenuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="lg:hidden absolute top-16 left-0 w-full bg-gray-950/95 backdrop-blur-sm border-b border-gray-800/30"
-                    >
-                        <div className="flex flex-col p-4 space-y-3">
-                            {navLinks.map((link) => {
-                                const Icon = link.icon;
-                                return (
-                                    <motion.a
-                                        key={link.name}
-                                        href={link.href}
-                                        onClick={() => setIsMenuOpen(false)}
-                                        initial={{ x: -10, opacity: 0 }}
-                                        animate={{ x: 0, opacity: 1 }}
-                                        transition={{ duration: 0.2 }}
-                                        className="flex items-center space-x-3 py-3 text-gray-300 hover:text-cyan-400 transition-colors duration-200 border-b border-gray-800/30 last:border-b-0"
-                                    >
-                                        <Icon size={18} className="text-cyan-500" />
-                                        <span className="text-sm font-medium">{link.name}</span>
-                                    </motion.a>
-                                );
-                            })}
+            {/* Menu Mobile Ultra Leve */}
+            {isMenuOpen && (
+                <div className="lg:hidden absolute top-14 left-0 w-full bg-gray-950 border-b border-gray-800">
+                    <div className="flex flex-col p-3 space-y-2">
+                        {navLinks.map((link) => {
+                            const Icon = link.icon;
+                            return (
+                                <a
+                                    key={link.name}
+                                    href={link.href}
+                                    onClick={() => setIsMenuOpen(false)}
+                                    className="flex items-center space-x-2 py-2 text-gray-300 hover:text-cyan-400 transition-colors border-b border-gray-800 last:border-b-0"
+                                >
+                                    <Icon size={16} className="text-cyan-500" />
+                                    <span className="text-sm">{link.name}</span>
+                                </a>
+                            );
+                        })}
 
-                            {/* Botão WhatsApp Mobile Otimizado */}
-                            <motion.a
-                                href="https://wa.me/5527996144142"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={() => setIsMenuOpen(false)}
-                                initial={{ x: -10, opacity: 0 }}
-                                animate={{ x: 0, opacity: 1 }}
-                                transition={{ duration: 0.2, delay: 0.1 }}
-                                className="flex items-center justify-center space-x-2 mt-2 px-4 py-3 text-sm font-semibold rounded-lg bg-cyan-600 text-white hover:bg-cyan-500 transition-colors duration-200"
-                            >
-                                <Phone size={16} />
-                                <span>Falar no WhatsApp</span>
-                            </motion.a>
-                        </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </motion.header>
+                        {/* Botão WhatsApp Mobile Ultra Leve */}
+                        <a
+                            href="https://wa.me/5527996144142"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setIsMenuOpen(false)}
+                            className="flex items-center justify-center space-x-1 mt-1 px-3 py-2 text-sm font-medium rounded bg-cyan-600 text-white hover:bg-cyan-500 transition-colors"
+                        >
+                            <Phone size={14} />
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
+            )}
+        </header>
     );
 }
