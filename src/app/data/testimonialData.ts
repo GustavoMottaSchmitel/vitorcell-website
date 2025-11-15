@@ -70,7 +70,7 @@ export const testimonials: Testimonial[] = [
     name: "Alessandra Aparecida de Paula",
     role: "",
     rating: 5,
-    service: "",
+    service: "          ",
     avatar: "👨‍🏫"
   }
 ];

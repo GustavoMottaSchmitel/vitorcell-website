@@ -38,13 +38,13 @@ export default function OptimizedHeroSection() {
             </div>
 
             <motion.div
-                className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+                className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center justify-between"
                 variants={containerVariants}
                 initial="hidden"
                 animate="show"
             >
-                {/* Conteúdo Principal - Centralizado */}
-                <div className="text-center">
+                {/* Conteúdo Principal - No mobile fica sozinho, no desktop fica à esquerda */}
+                <div className="lg:w-1/2 mb-12 lg:mb-0 text-center lg:text-left">
 
                     {/* Link para produtos - APENAS NO DESKTOP */}
                     <motion.a
@@ -61,7 +61,7 @@ export default function OptimizedHeroSection() {
                         initial={{ width: 0 }}
                         animate={{ width: "60px" }}
                         transition={{ delay: 0.3, duration: 0.6 }}
-                        className="h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mb-6 md:mb-8 mx-auto"
+                        className="h-1 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mb-6 md:mb-8 lg:mx-0 mx-auto"
                     />
 
                     <motion.h1
@@ -76,7 +76,7 @@ export default function OptimizedHeroSection() {
 
                     <motion.p
                         variants={itemVariants}
-                        className="text-base sm:text-lg text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed"
+                        className="text-base sm:text-lg text-gray-300 mb-6 md:mb-8 max-w-lg leading-relaxed lg:mx-0 mx-auto"
                     >
                         Reparo rápido, confiável e com <span className="text-cyan-400 font-semibold">garantia</span>. 
                         Especialistas em <span className="text-blue-400">Apple</span>, 
@@ -85,7 +85,7 @@ export default function OptimizedHeroSection() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center mb-8"
+                        className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center lg:justify-start"
                     >
                         <motion.a
                             href="#orcamento"
@@ -115,24 +115,24 @@ export default function OptimizedHeroSection() {
                     {/* Link para produtos - APENAS NO MOBILE */}
                     <motion.div
                         variants={itemVariants}
-                        className="md:hidden"
+                        className="mt-6 lg:hidden"
                     >
                         <motion.a
                             href="#produtos"
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-cyan-400 hover:text-cyan-300 hover:border-cyan-400/50 transition-all duration-200"
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 text-cyan-400 hover:text-cyan-300 hover:border-cyan-400/50 transition-all duration-200 text-sm"
                         >
-                            <Smartphone size={18} />
+                            <Smartphone size={16} />
                             <span>Ver celulares novos e usados</span>
-                            <ArrowRight size={16} />
+                            <ArrowRight size={14} />
                         </motion.a>
                     </motion.div>
                 </div>
 
-                {/* Imagem do Celular - CENTRALIZADA E SEM FLUTUAÇÃO */}
+                {/* Imagem do Celular - APENAS NO DESKTOP (lado direito) */}
                 <motion.div
-                    className="flex justify-center relative w-full max-w-xs sm:max-w-sm md:max-w-lg mx-auto mt-8 md:mt-12 h-[250px] sm:h-[350px] md:h-[400px]"
+                    className="hidden lg:flex lg:w-1/2 justify-center relative w-full max-w-md h-[500px]"
                     variants={itemVariants}
                 >
                     <div className="relative w-full h-full">
@@ -142,8 +142,8 @@ export default function OptimizedHeroSection() {
                             fill
                             style={{ objectFit: 'contain' }}
                             priority
-                            className="drop-shadow-lg"
-                            sizes="(max-width: 768px) 80vw, (max-width: 1200px) 60vw, 50vw"
+                            className="drop-shadow-xl"
+                            sizes="(max-width: 1200px) 40vw, 35vw"
                         />
                     </div>
                 </motion.div>
