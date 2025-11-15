@@ -53,99 +53,81 @@ const contactInfo = [
     }
 ];
 
-export default function RefinedFooter() {
+export default function LightFooter() {
     return (
-        <footer className="bg-gradient-to-b from-gray-900 to-gray-950 border-t border-gray-800/50 pt-20 pb-8 text-white">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <footer className="bg-gray-900 border-t border-gray-800 pt-12 pb-6 text-white">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
                 {/* Conteúdo Principal */}
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 border-b border-gray-800/50 pb-12 mb-8">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 border-b border-gray-800 pb-8 mb-6">
 
                     {/* Coluna 1: Logo e Descrição */}
                     <div className="lg:col-span-2">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6 }}
-                            className="space-y-4"
-                        >
+                        <div className="space-y-3">
                             <a
                                 href="#"
-                                className="flex items-center space-x-4 group"
+                                className="flex items-center space-x-3"
                             >
-                                <div className="p-2 bg-cyan-500/10 border border-cyan-500/20 rounded-lg group-hover:bg-cyan-500/20 transition-colors">
-                                    {/* Logo da VitorCell */}
-                                    <div className="w-12 h-12 relative">
-                                        <Image
-                                            src="/logo-vitorcell.png"
-                                            alt="VitorCell - Assistência Técnica"
-                                            width={48}
-                                            height={48}
-                                            className="object-contain"
-                                            priority
-                                        />
-                                    </div>
+                                <div className="w-10 h-10 relative">
+                                    <Image
+                                        src="/logo-vitorcell.png"
+                                        alt="VitorCell - Assistência Técnica"
+                                        width={40}
+                                        height={40}
+                                        className="object-contain"
+                                        priority
+                                    />
                                 </div>
                                 <div>
-                                    <span className="text-2xl font-bold text-white block">VitorCell</span>
-                                    <span className="text-cyan-400 text-sm font-medium">Assistência Técnica</span>
+                                    <span className="text-xl font-bold text-white">VitorCell</span>
+                                    <span className="text-cyan-400 text-xs block">Assistência Técnica</span>
                                 </div>
                             </a>
-                            <p className="text-gray-400 max-w-md text-lg leading-relaxed">
+                            <p className="text-gray-400 max-w-md text-sm leading-relaxed">
                                 Assistência técnica especializada em smartphones e acessórios premium.
                                 Qualidade e confiança em cada reparo.
                             </p>
-                        </motion.div>
+                        </div>
                     </div>
 
                     {/* Coluna 2: Navegação */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.1 }}
-                    >
-                        <h4 className="text-lg font-semibold mb-6 text-white border-l-4 border-cyan-500 pl-3">
+                    <div>
+                        <h4 className="text-base font-semibold mb-4 text-white">
                             Navegação
                         </h4>
-                        <ul className="space-y-3">
-                            {navLinks.map((link, index) => (
+                        <ul className="space-y-2">
+                            {navLinks.map((link) => (
                                 <li key={link.name}>
-                                    <motion.a
+                                    <a
                                         href={link.href}
-                                        className="text-gray-400 hover:text-cyan-400 transition-colors flex items-center group"
-                                        whileHover={{ x: 4 }}
+                                        className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
                                     >
-                                        <div className="w-1 h-1 bg-cyan-500 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                                         {link.name}
-                                    </motion.a>
+                                    </a>
                                 </li>
                             ))}
                         </ul>
-                    </motion.div>
+                    </div>
 
                     {/* Coluna 3: Contato */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, delay: 0.2 }}
-                    >
-                        <h4 className="text-lg font-semibold mb-6 text-white border-l-4 border-cyan-500 pl-3">
+                    <div>
+                        <h4 className="text-base font-semibold mb-4 text-white">
                             Contato
                         </h4>
-                        <ul className="space-y-4">
+                        <ul className="space-y-3">
                             {contactInfo.map((item, index) => {
                                 const Icon = item.icon;
                                 return (
-                                    <li key={index} className="group">
+                                    <li key={index}>
                                         <a
                                             href={item.href}
                                             target={item.href !== "#" ? "_blank" : undefined}
                                             rel={item.href !== "#" ? "noopener noreferrer" : undefined}
-                                            className="flex items-start space-x-3 p-2 rounded-lg transition-all duration-300 hover:bg-gray-800/30"
+                                            className="flex items-start space-x-2 p-1 rounded transition-colors hover:bg-gray-800/20"
                                         >
-                                            <Icon size={20} className={`${item.color} flex-shrink-0 mt-0.5`} />
+                                            <Icon size={16} className={`${item.color} flex-shrink-0 mt-0.5`} />
                                             <div>
-                                                <p className="text-white font-medium text-sm group-hover:text-cyan-400 transition-colors">
+                                                <p className="text-white font-medium text-xs">
                                                     {item.text}
                                                 </p>
                                                 <p className="text-gray-500 text-xs">{item.subtext}</p>
@@ -155,19 +137,14 @@ export default function RefinedFooter() {
                                 );
                             })}
                         </ul>
-                    </motion.div>
+                    </div>
                 </div>
 
                 {/* Rodapé Inferior */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.3 }}
-                    className="flex flex-col md:flex-row justify-between items-center pt-6 space-y-4 md:space-y-0"
-                >
+                <div className="flex flex-col md:flex-row justify-between items-center pt-4 space-y-3 md:space-y-0">
                     {/* Direitos Autorais */}
                     <div className="text-center md:text-left">
-                        <p className="text-gray-500 text-sm">
+                        <p className="text-gray-500 text-xs">
                             &copy; {new Date().getFullYear()} VitorCell. Todos os direitos reservados.
                         </p>
                         <p className="text-gray-600 text-xs mt-1">
@@ -176,33 +153,23 @@ export default function RefinedFooter() {
                     </div>
 
                     {/* Redes Sociais */}
-                    <div className="flex space-x-4">
-                        {socialLinks.map((social, index) => {
+                    <div className="flex space-x-2">
+                        {socialLinks.map((social) => {
                             const Icon = social.icon;
                             return (
-                                <motion.a
+                                <a
                                     key={social.name}
                                     href={social.href}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="p-2 bg-gray-800/50 border border-gray-700/50 rounded-lg text-gray-400 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300"
-                                    whileHover={{ scale: 1.1, y: -2 }}
-                                    whileTap={{ scale: 0.95 }}
+                                    className="p-1.5 bg-gray-800 border border-gray-700 rounded text-gray-400 hover:text-cyan-400 hover:border-cyan-500 transition-colors"
                                 >
-                                    <Icon size={20} />
-                                </motion.a>
+                                    <Icon size={16} />
+                                </a>
                             );
                         })}
                     </div>
-                </motion.div>
-
-                {/* Linha Decorativa */}
-                <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "100%" }}
-                    transition={{ duration: 1, delay: 0.4 }}
-                    className="h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent mt-8"
-                />
+                </div>
             </div>
         </footer>
     );
