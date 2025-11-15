@@ -8,10 +8,11 @@
     transform: translate(-50%, -50%) scale(1.05);
   }
 }
+
 .animate-pulse-slow-reverse {
-  animation: pulse-slow-reverse 10s infinite alterna
-  te;
+  animation: pulse-slow-reverse 10s infinite alternate;
 }
+
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -24,6 +25,44 @@
 }
 
 html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+}
+
+body {
   overflow-x: hidden;
-  max-width: 100%;
+  background: #111827; 
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@supports (-webkit-touch-callout: none) {
+  body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+  .overflow-x-hidden {
+    position: relative;
+  }
+}
+
+.main-container {
+  width: 100%;
+  position: relative;
+  background: #111827;
+}
+
+section {
+  background: inherit;
 }
