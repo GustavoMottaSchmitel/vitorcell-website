@@ -8,11 +8,10 @@
     transform: translate(-50%, -50%) scale(1.05);
   }
 }
-
 .animate-pulse-slow-reverse {
-  animation: pulse-slow-reverse 10s infinite alternate;
+  animation: pulse-slow-reverse 10s infinite alterna
+  te;
 }
-
 @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -25,16 +24,6 @@
 }
 
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  background: #111827;
-}
-
-body {
   overflow-x: hidden;
-}
-
-section {
-  background: inherit;
+  max-width: 100%;
 }
